@@ -6,9 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+//builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddSwaggerGen();
 
 // Connection string to connect with Database 
 string ConnectionStr = builder.Configuration.GetConnectionString("Default");
@@ -19,11 +22,11 @@ builder.Services.AddDbContext<DataContext>(options => options.UseMySql(Connectio
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {
@@ -32,6 +35,11 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x.AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+    .WithOrigins("http://localhost:4200"));
 
 app.UseAuthorization();
 
