@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/API/Migrations/20220620131106_UserPasswordAdded.Designer.cs
