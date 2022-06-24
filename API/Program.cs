@@ -1,5 +1,6 @@
 using API.Data;
 using API.Extensions;
+using API.Middleware;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddCors();
 builder.Services.AddIdentityServices(builder.Configuration);
 
-var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
+var app = builder.Build();
+
+app.UseMiddleware<ExceptionMiddleware>();
+
+app.UseHttpsRedirection();
 
 using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().CreateScope())
 {
@@ -21,7 +26,6 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
     context.Database.Migrate();
 }
 
-app.UseHttpsRedirection();
 
 app.UseCors(x => x.AllowAnyHeader()
     .AllowAnyMethod()
@@ -30,7 +34,6 @@ app.UseCors(x => x.AllowAnyHeader()
 
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
