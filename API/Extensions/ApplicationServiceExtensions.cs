@@ -12,6 +12,7 @@ namespace API.Extensions
 
             // Register Services (The recommended for HTTP Reqs is AddScoped => for the lifetime of the HTTP Req is alive) 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             // Connection string to connect with Database 
             string ConnectionStr = config.GetConnectionString("Default");
