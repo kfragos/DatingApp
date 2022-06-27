@@ -1,4 +1,5 @@
 ﻿using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace API.Extensions
             // Register Services (The recommended for HTTP Reqs is AddScoped => for the lifetime of the HTTP Req is alive) 
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             // Connection string to connect with Database 
             string ConnectionStr = config.GetConnectionString("Default");
