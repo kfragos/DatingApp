@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /API/Migrations/20220620131106_UserPasswordAdded.Designer.cs
 /client/.angular/cache/14.0.2/babel-webpack
 /client/.angular/cache/14.0.2/angular-webpack
+/API/Migrations/20220627094537_ExtendedUserEntity.Designer.cs
