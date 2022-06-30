@@ -17,13 +17,15 @@ namespace API.Services
                 config.Value.ApiKey,
                 config.Value.ApiSecret
             );
+
             _cloudinary = new Cloudinary(acc);
         }
+
         public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
 
-            if(file.Length > 0)
+            if (file.Length > 0)
             {
                 using var stream = file.OpenReadStream();
                 var uploadParams = new ImageUploadParams
@@ -33,6 +35,7 @@ namespace API.Services
                 };
                 uploadResult = await _cloudinary.UploadAsync(uploadParams);
             }
+
             return uploadResult;
         }
 
@@ -42,7 +45,7 @@ namespace API.Services
 
             var result = await _cloudinary.DestroyAsync(deleteParams);
 
-            return result;  
+            return result;
         }
     }
 }
