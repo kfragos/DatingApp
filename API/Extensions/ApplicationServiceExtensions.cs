@@ -12,7 +12,9 @@ namespace API.Extensions
         {
 
             // Register Services (The recommended for HTTP Reqs is AddScoped => for the lifetime of the HTTP Req is alive) 
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
