@@ -46,7 +46,7 @@ namespace API.Migrations
                     b.Property<string>("Introduction")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("KnowAs")
+                    b.Property<string>("KnownAs")
                         .HasColumnType("longtext");
 
                     b.Property<DateTime>("LastActive")
