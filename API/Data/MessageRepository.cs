@@ -14,7 +14,7 @@ namespace API.Data
             _context = context;
         }
 
-        public void AddMessages(Message message)
+        public void AddMessage(Message message)
         {
             _context.Messages.Add(message);
         }
