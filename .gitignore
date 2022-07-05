@@ -366,3 +366,4 @@ FodyWeavers.xsd
 /client/.angular/cache/14.0.2/angular-webpack
 /API/Migrations/20220627094537_ExtendedUserEntity.Designer.cs
 /API/Data/Migrations/20220701113540_fix-names.Designer.cs
+/API/Data/Migrations/20220705063856_LikeEntityAdded.Designer.cs
