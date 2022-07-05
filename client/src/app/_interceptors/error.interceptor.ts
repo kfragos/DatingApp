@@ -32,8 +32,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                   }
                 }
                 throw modalStateErrors.flat(); // Flat to one array with elements => tsconfig.json add to lib es2019
-              } else {
+              } else if (typeof(error.error)==='object'){
                 this.toastr.error(error.statusText, error.status);
+              } else {
+                this.toastr.error(error.error, error.status);
               }
               break;
             case 401:
