@@ -2,7 +2,6 @@ using API.Data;
 using API.Entities;
 using API.Extensions;
 using API.Middleware;
-using API.SignalR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +12,6 @@ builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddCors();
 builder.Services.AddIdentityServices(builder.Configuration);
-builder.Services.AddSignalR();
 
 
 // Configure the HTTP request pipeline.
@@ -34,7 +32,6 @@ using (var serviceScope = app.Services.GetService<IServiceScopeFactory>().Create
 app.UseCors(x => x.AllowAnyHeader()
     .AllowAnyMethod()
     .AllowCredentials()
-    .AllowCredentials()
     .WithOrigins("https://localhost:4200"));
 
 
@@ -42,9 +39,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-app.MapHub<PresenceHub>("hubs/presence");
-//app.MapHub<MessageHub>("hubs/message");
-app.MapFallbackToController("Index", "Fallback");
 
 
 using var scope = app.Services.CreateScope();
